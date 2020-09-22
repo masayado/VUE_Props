@@ -1,5 +1,5 @@
 <template>
-    <button @click="borrar(id)">Borrar</button>
+    <i class="fas fa-times-circle" id="app" @click="borrar(id)"></i>
 </template>
 
 <script>
@@ -11,30 +11,20 @@ export default {
             required:true,
         },
     },
-    data: function(){
-        return{}
-    },
+    //data: function(){
+       // return{}
+    //},
     //computed: {},
     methods:{
-        borrar(id){
-            //alert("borrando");
-            this.$emit("borrar",{id:id})
+        borrar:function(id){
+            //alert(id);
+           this.$emit("borrar", {id:id})
         },
-    },
+    }
     //componentes:{},
 }
 </script>
 
 <style scoped>
-
-button{
-    color: #f9fafb;
-    padding:8px;
-    margin:5px;
-    background-color: #343a40;
-    border-style: none;
-    cursor: pointer;
-    border-radius: 3px;
-    }
 
 </style>

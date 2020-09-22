@@ -5,8 +5,8 @@
         <h1>{{title}}</h1>
 
         <div class="form">
-        <input type="text" placeholder="Ingresa una nueva tarea" v-model="tareas">
-        <button class="crear_button" @click="agregar_tarea">Crear</button>
+        <input type="text" v-model="tareas" placeholder="Ingresa una nueva tarea" @keyup.enter="agregar_tarea">
+        <button @click="agregar_tarea" class="crear_button">Agregar</button>
         </div>
 
         <h3>{{subtitle}}</h3>
@@ -21,6 +21,7 @@
             {{tareas}}
 
             <delete-component :id="index" @borrar="borrar_tarea"></delete-component>
+            
             </li>
             </ol>
         </div>
@@ -33,7 +34,7 @@ import DeleteComponent from "./components/Delete.vue"
   export default {
     name:'app-component',
     //props: {},
-    data: function(){
+    data(){
       return {
         title: 'To-Do List',
         subtitle: 'Lista de tareas',
