@@ -1,10 +1,9 @@
 <template>
-<div class="container">
-  <div id="app">
+  <div id="app" class="container">
     <h1>{{title}}</h1>
     {{subtitle}}
     <input type="text" placeholder="Ingresa una nueva tarea" v-model="tareas">
-    <div><button @click="agregar_tarea">Crear</button></div>
+    <div><button class="crear_button" @click="agregar_tarea">Crear</button></div>
     <br>
     <h3>{{subtitle}}</h3>
         <ol>
@@ -13,9 +12,7 @@
         <delete-component></delete-component>
         </li>
         </ol>
-    <delete-component></delete-component>
   </div>
-</div>
 </template>
 
 <script>
@@ -34,11 +31,15 @@ import DeleteComponent from "./components/Delete.vue"
     },
     //computed:{},
     methods:{
-        agregar_tarea:function(){
+        agregar_tarea:function(tareas, index){
             if(this.tareas != ""){
                 this.tareas2.push(this.tareas)
                 this.tareas="";
             }
+        },
+        borrar_tarea:function(tareas){
+            const tareasIndex = this.tareas2.indexOf(tareas);
+            this.tareas2.splice(tareasIndex, 1);
         }
     },
     components:{
@@ -47,8 +48,8 @@ import DeleteComponent from "./components/Delete.vue"
   }
 </script>
 
-<style scoped>
-  #app {
+<style>
+
     *{
     margin:0 auto;
     padding:0;
@@ -64,8 +65,6 @@ import DeleteComponent from "./components/Delete.vue"
     background-color: #f9fafb;
     padding:25px;
     line-height: 1.6;
-    display: flex;
-    justify-content: center;
     }
 
 ol{
@@ -77,31 +76,8 @@ p{
     text-align: center;
     }
 
-input{
-    padding:10px;
-    width:300px;
-    margin:5px;
-    }
-
-button{
-    color: #f9fafb;
-    padding:10px;
-    clear: both;
-    width:300px;
-    margin:5px;
-    background-color: #343a40;
-    border-style: none;
-    cursor: pointer;
-    border-radius: 3px;
-    }
-
-button:hover{
-    background-color: #191c1e;
-    }
-
 h1{
     text-align:center;
     }
 
-}
 </style>
