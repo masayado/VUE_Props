@@ -1,18 +1,31 @@
 <template>
+
   <div id="app" class="container">
-    <h1>{{title}}</h1>
-    {{subtitle}}
-    <input type="text" placeholder="Ingresa una nueva tarea" v-model="tareas">
-    <div><button class="crear_button" @click="agregar_tarea">Crear</button></div>
-    <br>
-    <h3>{{subtitle}}</h3>
-        <ol>
-        <li v-for="tareas in tareas2">
-        {{tareas}}
-        <delete-component></delete-component>
-        </li>
-        </ol>
+
+        <h1>{{title}}</h1>
+
+        <div class="form">
+        <input type="text" placeholder="Ingresa una nueva tarea" v-model="tareas">
+        <button class="crear_button" @click="agregar_tarea">Crear</button>
+        </div>
+
+        <h3>{{subtitle}}</h3>
+        <div class="lista">
+            <ol>
+            <li v-for="(tareas, index) in tareas2"
+            :tareas="tareas"
+            :index="index"
+            :key="tareas.id"
+            >
+
+            {{tareas}}
+
+            <delete-component :id="index" @borrar="borrar_tarea"></delete-component>
+            </li>
+            </ol>
+        </div>
   </div>
+  
 </template>
 
 <script>
@@ -38,6 +51,7 @@ import DeleteComponent from "./components/Delete.vue"
             }
         },
         borrar_tarea:function(tareas){
+           // alert("Estoy borrando la tarea")
             const tareasIndex = this.tareas2.indexOf(tareas);
             this.tareas2.splice(tareasIndex, 1);
         }
@@ -48,36 +62,62 @@ import DeleteComponent from "./components/Delete.vue"
   }
 </script>
 
-<style>
-
-    *{
-    margin:0 auto;
-    padding:0;
-    box-sizing: border-box;
-    font-family: 'Helvetica', sans-serif;
-    }
+<style scoped>
 
 .container{
-    position: relative;
-    top:100px;
-    margin:auto;
-    width: 30%;
-    background-color: #f9fafb;
+    margin:0 auto;
     padding:25px;
+    box-sizing: border-box;
+    font-family: 'Helvetica', sans-serif;
+    position: relative;
+    top:80px;
+    margin:auto;
+    width: 40%;
+    background-color: #f9fafb;
     line-height: 1.6;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
+
+h1, h3{
+    text-align: center;
+}
 
 ol{
     padding-left:25px;
     padding-right:25px;
     }
 
-p{
-    text-align: center;
+.form{
+    display: flex;
+}
+
+input{
+    padding:10px;
+    width:230px;
+    margin:5px;
+}
+
+.crear_button{
+    color: #f9fafb;
+    padding:10px;
+    width:70px;
+    margin:5px;
+    background-color: #343a40;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 3px;
     }
 
-h1{
-    text-align:center;
+button:hover{
+    background-color: #191c1e;
     }
+
+.lista{
+    display:flex;
+    justify-content: space-between;
+}
 
 </style>
