@@ -39,8 +39,8 @@ import DeleteComponent from "./components/Delete.vue"
         title: 'To-Do List',
         subtitle: 'Lista de tareas',
         paragraph: "Ingresa la tarea",
-        tareas:"",
         tareas2:[],
+        tareas:"",
       }
     },
     //computed:{},
