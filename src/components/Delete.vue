@@ -17,7 +17,7 @@ export default {
     //computed: {},
     methods:{
         borrar:function(id){
-            //alert(id);
+           // alert(id);
            this.$emit("borrar", {id:id})
         },
     }

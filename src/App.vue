@@ -51,10 +51,11 @@ import DeleteComponent from "./components/Delete.vue"
                 this.tareas="";
             }
         },
-        borrar_tarea:function(tareas){
+        borrar_tarea:function(e){
            // alert("Estoy borrando la tarea")
-            const tareasIndex = this.tareas2.indexOf(tareas);
-            this.tareas2.splice(tareasIndex, 1);
+            let id = e.id;
+            let tareasIndex = this.tareas2.findIndex((tareas)=>tareas.id === id);
+            this.tareas2.splice(id,1);
         }
     },
     components:{
